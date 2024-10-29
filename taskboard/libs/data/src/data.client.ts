@@ -1,8 +1,9 @@
+import { Logger, Provider } from '@nestjs/common';
 import { NodePgDatabase, drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+
 import { DatabaseConfigType } from './data.config';
 import { DataConfig } from './data.config';
-import { Logger, Provider } from '@nestjs/common';
 import * as schema from './schema';
 
 export const DB_CLIENT = Symbol('DB_CLIENT');
@@ -32,8 +33,7 @@ export default {
       connectionTimeoutMillis: 5000,
     });
     pool.on('error', logger.error);
-    const db = drizzle(pool, { schema, logger: dbLogger });
-    return db;
+    return drizzle(pool, { schema, logger: dbLogger });
   },
   inject: [DataConfig.KEY],
 } satisfies Provider;

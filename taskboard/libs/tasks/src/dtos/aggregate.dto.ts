@@ -1,6 +1,7 @@
 import { createZodDto } from '@anatine/zod-nestjs';
-import { TaskSchema } from '@app/data';
 import { z } from 'zod';
+
+import { TaskSchema } from '@app/data';
 
 export const schema = z.object({
   name: z.string(),

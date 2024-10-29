@@ -1,12 +1,13 @@
+import { Inject, Injectable } from '@nestjs/common';
+import { and, eq } from 'drizzle-orm';
+
 import {
-  DataClientType,
   DB_CLIENT,
+  DataClientType,
   NewTaskType,
   TASK,
   TaskType,
 } from '@app/data';
-import { Inject, Injectable } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
 
 @Injectable()
 export class TaskRepo {

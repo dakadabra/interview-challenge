@@ -7,15 +7,17 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+
+import { ProjectType, StatusType, TaskType } from '@app/data';
+
+import { BoardAggregateDto } from './dtos/aggregate.dto';
+import { NewProjectDto, UpdateProjectDto } from './dtos/project.dto';
+import { NewStatusDto, UpdateStatusDto } from './dtos/status.dto';
+import { NewTaskDto } from './dtos/task.dto';
 import { ProjectService } from './project.service';
 import { StatusService } from './status.service';
 import { TaskService } from './task.service';
-import { NewProjectDto, UpdateProjectDto } from './dtos/project.dto';
-import { ProjectType, StatusType, TaskType } from '@app/data';
-import { NewStatusDto, UpdateStatusDto } from './dtos/status.dto';
-import { NewTaskDto } from './dtos/task.dto';
-import { BoardAggregateDto } from './dtos/aggregate.dto';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 @Controller('taskboard')
 @ApiTags('taskboard')

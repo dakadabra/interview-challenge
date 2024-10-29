@@ -1,6 +1,7 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
-import { uuid, varchar, index } from 'drizzle-orm/pg-core';
+import { index, uuid, varchar } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+
 import { schema } from './schema';
 
 export const STATUS = schema.table(

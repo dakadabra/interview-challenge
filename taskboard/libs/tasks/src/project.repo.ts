@@ -1,6 +1,9 @@
+import { Inject, Injectable } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
+
 import {
-  DataClientType,
   DB_CLIENT,
+  DataClientType,
   NewProjectType,
   PROJECT,
   ProjectType,
@@ -9,8 +12,7 @@ import {
   TASK,
   TaskType,
 } from '@app/data';
-import { Inject, Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+
 import { BoardAggregateDto } from './dtos/aggregate.dto';
 
 interface AggregateResultType {

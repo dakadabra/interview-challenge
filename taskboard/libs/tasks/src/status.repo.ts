@@ -1,12 +1,13 @@
+import { Inject, Injectable } from '@nestjs/common';
+import { eq } from 'drizzle-orm';
+
 import {
-  DataClientType,
   DB_CLIENT,
+  DataClientType,
   NewStatusType,
   STATUS,
   StatusType,
 } from '@app/data';
-import { Inject, Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
 
 @Injectable()
 export class StatusRepo {

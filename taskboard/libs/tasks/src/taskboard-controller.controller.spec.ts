@@ -1,9 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { TaskboardControllerController } from './taskboard-controller.controller';
-import { TaskService } from './task.service';
 import { TestBed } from '@automock/jest';
+import { Test, TestingModule } from '@nestjs/testing';
+
 import { ProjectService } from './project.service';
 import { StatusService } from './status.service';
+import { TaskService } from './task.service';
+import { TaskboardControllerController } from './taskboard-controller.controller';
 
 describe('TaskboardControllerController', () => {
   let controller: TaskboardControllerController;

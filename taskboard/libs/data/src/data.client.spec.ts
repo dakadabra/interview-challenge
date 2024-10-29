@@ -1,10 +1,13 @@
+import { ConfigModule } from '@nestjs/config';
+import { Test } from '@nestjs/testing';
+
+import dataClient, { DB_CLIENT } from './data.client';
+import { DataConfig, DatabaseConfigType } from './data.config';
+
 const mockMigrate = jest.fn();
 
-import { Test } from '@nestjs/testing';
-import dataClient, { DB_CLIENT } from './data.client';
 const { useFactory } = dataClient;
-import { ConfigModule } from '@nestjs/config';
-import { DataConfig, DatabaseConfigType } from './data.config';
+
 jest.mock('drizzle-orm/node-postgres/migrator', () => ({
   migrate: mockMigrate,
 }));

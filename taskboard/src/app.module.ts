@@ -1,6 +1,7 @@
-import { TasksModule } from '@app/tasks';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+
+import { TasksModule } from '@app/tasks';
 
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true }), TasksModule],
