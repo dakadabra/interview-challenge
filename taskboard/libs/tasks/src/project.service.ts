@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ProjectRepo } from './project.repo';
-import { NewProjectType, ProjectType } from 'libs/data/src';
+import { NewProjectType, ProjectType } from '@app/data';
 import { BoardAggregateDto } from './dtos/aggregate.dto';
 
 @Injectable()

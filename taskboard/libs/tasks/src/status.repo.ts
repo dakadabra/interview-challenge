@@ -4,7 +4,7 @@ import {
   NewStatusType,
   STATUS,
   StatusType,
-} from 'libs/data/src';
+} from '@app/data';
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 

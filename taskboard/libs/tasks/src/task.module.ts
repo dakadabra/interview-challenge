@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TaskService } from './task.service';
-import { DataModule } from 'libs/data/src';
+import { DataModule } from '@app/data';
 import { TaskboardControllerController } from './taskboard-controller.controller';
 import { TaskRepo } from './task.repo';
 import { ProjectRepo } from './project.repo';
@@ -10,7 +10,14 @@ import { StatusRepo } from './status.repo';
 
 @Module({
   imports: [DataModule],
-  providers: [TaskService, TaskRepo, ProjectRepo, ProjectService, StatusService, StatusRepo],
+  providers: [
+    TaskService,
+    TaskRepo,
+    ProjectRepo,
+    ProjectService,
+    StatusService,
+    StatusRepo,
+  ],
   exports: [TaskService, ProjectService, StatusService],
   controllers: [TaskboardControllerController],
 })

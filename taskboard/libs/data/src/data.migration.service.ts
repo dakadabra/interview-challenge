@@ -1,4 +1,4 @@
-import { DB_CLIENT, DataClientType } from 'libs/data/src/data.client';
+import { DB_CLIENT, DataClientType } from '@app/data';
 import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as path from 'path';

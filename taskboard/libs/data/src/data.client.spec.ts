@@ -4,8 +4,10 @@ import { Test } from '@nestjs/testing';
 import dataClient, { DB_CLIENT } from './data.client';
 const { useFactory } = dataClient;
 import { ConfigModule } from '@nestjs/config';
-import config, { DatabaseConfigType } from './data.config';
-jest.mock('drizzle-orm/node-postgres/migrator', () => ({ migrate: mockMigrate }));
+import { DataConfig, DatabaseConfigType } from './data.config';
+jest.mock('drizzle-orm/node-postgres/migrator', () => ({
+  migrate: mockMigrate,
+}));
 
 const mockConfig = {
   POSTGRES_DATABASE_NAME: 'test',
@@ -23,12 +25,12 @@ describe('Data Client', () => {
 
   it('injects the config', async () => {
     const module = await Test.createTestingModule({
-      imports: [ConfigModule.forFeature(config)],
+      imports: [ConfigModule.forFeature(DataConfig)],
       providers: [dataClient],
     }).compile();
     const client = module.get(DB_CLIENT);
     expect(client).toBeDefined();
     expect(client._.session.client.options.host).toBe('localhost');
-    expect(client._.session.client.options.database).toBe('postgres');
+    expect(client._.session.client.options.database).toBe('taskboard');
   });
 });

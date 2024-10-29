@@ -4,7 +4,7 @@ import {
   NewTaskType,
   TASK,
   TaskType,
-} from 'libs/data/src';
+} from '@app/data';
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { StatusRepo } from './status.repo';
-import { NewStatusType, StatusType } from 'libs/data/src';
+import { NewStatusType, StatusType } from '@app/data';
 
 @Injectable()
 export class StatusService {

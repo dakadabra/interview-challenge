@@ -11,7 +11,7 @@ import { ProjectService } from './project.service';
 import { StatusService } from './status.service';
 import { TaskService } from './task.service';
 import { NewProjectDto, UpdateProjectDto } from './dtos/project.dto';
-import { ProjectType, StatusType, TaskType } from 'libs/data/src';
+import { ProjectType, StatusType, TaskType } from '@app/data';
 import { NewStatusDto, UpdateStatusDto } from './dtos/status.dto';
 import { NewTaskDto } from './dtos/task.dto';
 import { BoardAggregateDto } from './dtos/aggregate.dto';
