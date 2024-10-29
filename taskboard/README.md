@@ -1,49 +1,71 @@
 ## Interview Challenge: Task Assignment and Notifications System
 
-### Objective
-Extend the existing task functionality to include user assignments and automated notifications for status changes.
+### Context
+This project represents a backend API for a simple task board application (e.g. Trello Clone). The application 
+allows users to create projects and tasks within those projects. The API supports CRUD operations for projects 
+and tasks, along with the ability to update task statuses.
+
+This project is built with [NestJS](https://nestjs.com/). It uses [Drizzle](https://orm.drizzle.team/) for a 
+SQL DSL and ORM along with [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview) for database migrations. 
+Input validation is done using [Zod](https://zod.dev/) combined with some utilities 
+like [zod-nestjs](https://www.npmjs.com/package/@anatine/zod-nestjs) 
+and [drizzle-zod](https://orm.drizzle.team/docs/zod).
+
+# Coding Challenge: Task Assignment and Activity Logging System
+
+## Objective
+- Review the existing codebase to understand its organization and structure.
+- Get the application running locally.
+- Extend the existing API to add user assignment capabilities and an activity log for tracking task status changes.
 
 ---
 
-### Feature Details
+## Feature Requirements
 
-1. **Assigning Users to Tasks**
-   - Add functionality to assign users to specific tasks within projects.
-   - Update the database schema to track which users are assigned to each task.
+### 1. Task User Assignment
+- **Feature**: Enable tasks to be assigned to a user who is responsible for performing the task.
+- **Implementation Details**:
+    - **Database Schema**: Update the database to support user-task relationships.
+    - **Layers**: Update the repository, service, and controller layers to incorporate this functionality.
+    - **Endpoints**:
+        - Add an endpoint to assign a specific user to a task.
+        - Add an endpoint to retrieve all tasks assigned to a specific user.
 
-2. **Status Change Notifications**
-   - Implement a notification system where users assigned to a task are automatically notified when the task’s status changes.
-   - Notifications should be stored as entities in the database, with a simple REST endpoint to retrieve them.
+### 2. Activity Log
+- **Feature**: Implement an activity log to track and record all status changes for tasks.
+- **Implementation Details**:
+    - **Database Schema**: Add support for activity logs, associating each log entry with the related task.
+    - **Layers**: Update the repository, service, and controller layers to incorporate this functionality.
+    - **Logic**: Ensure that when a task’s status changes, a new entry is automatically generated and saved to the database.
+    - **Endpoints**:
+        - Add an endpoint to retrieve all activity logs for a specific task.
+        - Add an endpoint to retrieve the latest activity logs for all tasks.
 
-3. **Endpoint Requirements**
-   - Create endpoints for:
-     - Assigning users to tasks
-     - Fetching all tasks assigned to a user
-     - Retrieving notifications related to status changes
-
-4. **Bonus**
-   - Implement role-based access to limit who can assign users or update task statuses.
-   - Include validations to ensure users can only be assigned to tasks within their project scope.
-   - Tests
-
-5. **Assumptions**
-   - Login is not required, just a users table
-   - Sending actual notifications (emails/sms/push) are not required. Just adding to the table
-
+### 3. Bonus Features
+- **Tests**: Implement unit and integration tests for the new functionalities.
+- **Feature:** Extended Project Team Support
+    - Allow multiple users to be assigned to a project as team members.
+    - Add validation to ensure tasks are assigned only to users within the project team.
 
 ---
 
-### Evaluation Criteria
-This challenge is designed to assess the following skills:
-- **Database Schema Management**: Extending the existing schema to support new features.
-- **API Development**: Adding new REST API endpoints using NestJS.
-- **Efficient Querying**: Ensuring queries are optimized and performant.
-- **Role-Based Access Control**: Securing actions based on user roles.
-- **Code Quality**: Clean, readable code with adequate documentation.
+## Clarifications
 
+- **Authentication/Authorization**: User login or registration is not required.
+- **Notifications**: Physical notifications (e.g., email, SMS, push) are not required upon task assignment or status change.
 
-## About this project
-This project is built with [NestJS](https://nestjs.com/). It uses [Drizzle](https://orm.drizzle.team/) for a SQL DSL and ORM along with [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview) for database migrations. Input validation is done using [Zod](https://zod.dev/) combined with some utilities like [zod-nestjs](https://www.npmjs.com/package/@anatine/zod-nestjs) and [drizzle-zod](https://orm.drizzle.team/docs/zod)
+---
+
+## Evaluation Criteria
+
+The challenge will assess the following skills:
+
+- **Database Schema Design**: Extending the schema to support new relationships and features.
+- **API Development**: Building new REST API endpoints using NestJS.
+- **Efficient Querying**: Ensuring database queries are optimized and performant.
+- **Code Quality**: Writing clean, readable, and well-documented code.
+
+---
 
 ## Installation
 
