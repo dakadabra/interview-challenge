@@ -5,32 +5,20 @@ import {
   PROJECT,
   ProjectType,
   STATUS,
+  StatusType,
   TASK,
+  TaskType,
 } from '@app/data';
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { BoardAggregateDto } from './dtos/aggregate.dto';
 
-type AggregateResultType = {
-  project: {
-    id: string;
-    name: string;
-    description: string;
-  };
-  status: {
-    id: string;
-    name: string;
-    description: string;
-    color: string;
-  };
-  task: {
-    id: string;
-    description: string;
-    title: string;
-    statusId: string;
-    projectId: string;
-  };
-};
+interface AggregateResultType {
+  project: ProjectType;
+  status: StatusType;
+  task: TaskType;
+}
+
 @Injectable()
 export class ProjectRepo {
   constructor(@Inject(DB_CLIENT) private readonly dbClient: DataClientType) {}
@@ -77,9 +65,10 @@ export class ProjectRepo {
   private aggregateRecords(records: AggregateResultType[]): BoardAggregateDto {
     const projectName = records.length > 0 ? records[0].project.name : '';
 
-    const columnsMap: {
-      [statusId: string]: { name: string; id: string; tasks: any[] };
-    } = {};
+    const columnsMap: Record<
+      string,
+      { name: string; id: string; tasks: TaskType[] }
+    > = {};
     records.forEach((record) => {
       const { status, task } = record;
       if (!columnsMap[status.id]) {
