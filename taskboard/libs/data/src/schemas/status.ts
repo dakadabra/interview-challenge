@@ -1,7 +1,6 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { uuid, varchar, index } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import { z } from 'zod';
 import { schema } from './schema';
 
 export const STATUS = schema.table(
@@ -16,7 +15,9 @@ export const STATUS = schema.table(
     nameIdx: index('idx_status_name').on(status.name),
   }),
 );
-export type StatusType = InferSelectModel<typeof STATUS>;
-export const NewStatusSchema = createInsertSchema(STATUS);
-export const StatusSchema = createSelectSchema(STATUS);
+
 export type NewStatusType = InferInsertModel<typeof STATUS>;
+export const NewStatusSchema = createInsertSchema(STATUS);
+
+export type StatusType = InferSelectModel<typeof STATUS>;
+export const StatusSchema = createSelectSchema(STATUS);

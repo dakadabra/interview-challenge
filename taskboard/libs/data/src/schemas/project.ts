@@ -1,7 +1,6 @@
 import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { uuid, varchar, index, date } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
-import { z } from 'zod';
 import { schema } from './schema';
 
 export const PROJECT = schema.table(
@@ -16,7 +15,9 @@ export const PROJECT = schema.table(
     nameIdx: index('idx_project_name').on(project.name),
   }),
 );
-export type ProjectType = InferSelectModel<typeof PROJECT>;
-export const NewProjectSchema = createInsertSchema(PROJECT);
-export const ProjectSchema = createSelectSchema(PROJECT);
+
 export type NewProjectType = InferInsertModel<typeof PROJECT>;
+export const NewProjectSchema = createInsertSchema(PROJECT);
+
+export type ProjectType = InferSelectModel<typeof PROJECT>;
+export const ProjectSchema = createSelectSchema(PROJECT);
