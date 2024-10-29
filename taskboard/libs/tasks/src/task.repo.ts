@@ -1,4 +1,10 @@
-import { DataClientType, DB_CLIENT, NewTaskType, TASK, TaskType } from 'libs/data/src';
+import {
+  DataClientType,
+  DB_CLIENT,
+  NewTaskType,
+  TASK,
+  TaskType,
+} from 'libs/data/src';
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 
@@ -7,9 +13,15 @@ export class TaskRepo {
   constructor(@Inject(DB_CLIENT) private readonly dbClient: DataClientType) {}
 
   async getTasks(projectId: string): Promise<TaskType[]> {
-    return await this.dbClient.select().from(TASK).where(eq(TASK.projectId, projectId));
+    return await this.dbClient
+      .select()
+      .from(TASK)
+      .where(eq(TASK.projectId, projectId));
   }
-  async getTasksByStatus(projectId: string, statusId: string): Promise<TaskType[]> {
+  async getTasksByStatus(
+    projectId: string,
+    statusId: string,
+  ): Promise<TaskType[]> {
     return await this.dbClient
       .select()
       .from(TASK)
@@ -23,7 +35,11 @@ export class TaskRepo {
     return result;
   }
   async updateTask(task: TaskType): Promise<TaskType> {
-    const [result] = await this.dbClient.update(TASK).set(task).where(eq(TASK.id, task.id)).returning();
+    const [result] = await this.dbClient
+      .update(TASK)
+      .set(task)
+      .where(eq(TASK.id, task.id))
+      .returning();
     return result;
   }
 }

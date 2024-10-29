@@ -1,4 +1,12 @@
-import { DataClientType, DB_CLIENT, NewProjectType, PROJECT, ProjectType, STATUS, TASK } from '@app/data';
+import {
+  DataClientType,
+  DB_CLIENT,
+  NewProjectType,
+  PROJECT,
+  ProjectType,
+  STATUS,
+  TASK,
+} from '@app/data';
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { BoardAggregateDto } from './dtos/aggregate.dto';
@@ -31,15 +39,25 @@ export class ProjectRepo {
     return await this.dbClient.select().from(PROJECT);
   }
   async getProjectById(id: string): Promise<ProjectType> {
-    const [project] = await this.dbClient.select().from(PROJECT).where(eq(PROJECT.id, id));
+    const [project] = await this.dbClient
+      .select()
+      .from(PROJECT)
+      .where(eq(PROJECT.id, id));
     return project;
   }
   async createProject(project: NewProjectType): Promise<ProjectType> {
-    const [result] = await this.dbClient.insert(PROJECT).values(project).returning();
+    const [result] = await this.dbClient
+      .insert(PROJECT)
+      .values(project)
+      .returning();
     return result;
   }
   async updateProject(project: ProjectType): Promise<ProjectType> {
-    const [result] = await this.dbClient.update(PROJECT).set(project).where(eq(PROJECT.id, project.id)).returning();
+    const [result] = await this.dbClient
+      .update(PROJECT)
+      .set(project)
+      .where(eq(PROJECT.id, project.id))
+      .returning();
     return result;
   }
   async deleteProject(id: string): Promise<void> {
@@ -59,7 +77,9 @@ export class ProjectRepo {
   private aggregateRecords(records: AggregateResultType[]): BoardAggregateDto {
     const projectName = records.length > 0 ? records[0].project.name : '';
 
-    const columnsMap: { [statusId: string]: { name: string; id: string; tasks: any[] } } = {};
+    const columnsMap: {
+      [statusId: string]: { name: string; id: string; tasks: any[] };
+    } = {};
     records.forEach((record) => {
       const { status, task } = record;
       if (!columnsMap[status.id]) {

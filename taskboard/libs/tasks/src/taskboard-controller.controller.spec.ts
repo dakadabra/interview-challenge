@@ -9,7 +9,9 @@ describe('TaskboardControllerController', () => {
       controllers: [TaskboardControllerController],
     }).compile();
 
-    controller = module.get<TaskboardControllerController>(TaskboardControllerController);
+    controller = module.get<TaskboardControllerController>(
+      TaskboardControllerController,
+    );
   });
 
   it('should be defined', () => {
