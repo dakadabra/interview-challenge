@@ -15,46 +15,22 @@ and [drizzle-zod](https://orm.drizzle.team/docs/zod).
 
 ## Objective
 - Review the existing codebase to understand its organization and structure.
-- Get the application running locally.
-- Extend the existing API to add user assignment capabilities and an activity log for tracking task status changes.
+- Run the application locally.
+- During your scheduled pairing session, you will be asked to work on a new feature extending this API.
+- (Optionally) Implement the sample feature below before the pairing session to familiarize yourself with the codebase.
 
 ---
 
-## Feature Requirements
-
-### 1. Task User Assignment
-- **Feature**: Enable tasks to be assigned to a user who is responsible for performing the task.
+## Example Feature: Activity Log
+- **Feature**: Implement an activity log to record all status changes for tasks.
 - **Implementation Details**:
-    - **Database Schema**: Update the database to support user-task relationships.
-    - **Layers**: Update the repository, service, and controller layers to incorporate this functionality.
-    - **Endpoints**:
-        - Add an endpoint to assign a specific user to a task.
-        - Add an endpoint to retrieve all tasks assigned to a specific user.
-
-### 2. Activity Log
-- **Feature**: Implement an activity log to track and record all status changes for tasks.
-- **Implementation Details**:
-    - **Database Schema**: Add support for activity logs, associating each log entry with the related task.
+    - **Database Schema**: Add support for an activity log
     - **Layers**: Update the repository, service, and controller layers to incorporate this functionality.
     - **Logic**: Ensure that when a task’s status changes, a new entry is automatically generated and saved to the database.
+    - **Testing**: Implement unit tests to validate the activity log functionality.
     - **Endpoints**:
         - Add an endpoint to retrieve all activity logs for a specific task.
         - Add an endpoint to retrieve the latest activity logs for all tasks.
-
-### 3. Bonus Features
-- **Tests**: Implement unit and integration tests for the new functionalities.
-- **Feature:** Extended Project Team Support
-    - Allow multiple users to be assigned to a project as team members.
-    - Add validation to ensure tasks are assigned only to users within the project team.
-
----
-
-## Clarifications
-
-- **Authentication/Authorization**: User login or registration is not required.
-- **Notifications**: Physical notifications (e.g., email, SMS, push) are not required upon task assignment or status change.
-
----
 
 ## Evaluation Criteria
 
