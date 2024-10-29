@@ -1,7 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { z } from 'zod';
 
-// tied to k8s/base/common/external-secret-db.yaml
 const DatabaseConfigSchema = z.object({
   POSTGRES_HOST: z.string(),
   POSTGRES_PORT: z.string(),
@@ -13,6 +12,6 @@ const DatabaseConfigSchema = z.object({
 
 export type DatabaseConfigType = z.infer<typeof DatabaseConfigSchema>;
 
-export default registerAs('DB_CONFIG', () =>
+export const DataConfig = registerAs('DB_CONFIG', () =>
   DatabaseConfigSchema.parse(process.env),
 );
