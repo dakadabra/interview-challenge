@@ -1,30 +1,49 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Interview Challenge: Task Assignment and Notifications System
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+### Objective
+Extend the existing task functionality to include user assignments and automated notifications for status changes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+### Feature Details
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. **Assigning Users to Tasks**
+   - Add functionality to assign users to specific tasks within projects.
+   - Update the database schema to track which users are assigned to each task.
+
+2. **Status Change Notifications**
+   - Implement a notification system where users assigned to a task are automatically notified when the task’s status changes.
+   - Notifications should be stored as entities in the database, with a simple REST endpoint to retrieve them.
+
+3. **Endpoint Requirements**
+   - Create endpoints for:
+     - Assigning users to tasks
+     - Fetching all tasks assigned to a user
+     - Retrieving notifications related to status changes
+
+4. **Bonus**
+   - Implement role-based access to limit who can assign users or update task statuses.
+   - Include validations to ensure users can only be assigned to tasks within their project scope.
+   - Tests
+
+5. **Assumptions**
+   - Login is not required, just a users table
+   - Sending actual notifications (emails/sms/push) are not required. Just adding to the table
+
+
+---
+
+### Evaluation Criteria
+This challenge is designed to assess the following skills:
+- **Database Schema Management**: Extending the existing schema to support new features.
+- **API Development**: Adding new REST API endpoints using NestJS.
+- **Efficient Querying**: Ensuring queries are optimized and performant.
+- **Role-Based Access Control**: Securing actions based on user roles.
+- **Code Quality**: Clean, readable code with adequate documentation.
+
+
+## About this project
+This project is built with [NestJS](https://nestjs.com/). It uses [Drizzle](https://orm.drizzle.team/) for a SQL DSL and ORM along with [Drizzle Kit](https://orm.drizzle.team/docs/kit-overview) for database migrations. Input validation is done using [Zod](https://zod.dev/) combined with some utilities like [zod-nestjs](https://www.npmjs.com/package/@anatine/zod-nestjs) and [drizzle-zod](https://orm.drizzle.team/docs/zod)
 
 ## Installation
 
@@ -33,6 +52,12 @@ $ npm install
 ```
 
 ## Running the app
+
+Make sure docker is installed and run
+```bash
+docker compose up -d
+```
+
 
 ```bash
 # development
@@ -43,6 +68,11 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+```
+## Migrations
+To generate new database migration files after updating the drizzle schema, use
+```bash
+npm run generate:migrations
 ```
 
 ## Test
@@ -57,17 +87,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
