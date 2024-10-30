@@ -56,7 +56,6 @@ Make sure docker is installed and run
 docker compose up -d
 ```
 
-
 ```bash
 # development
 $ npm run start
